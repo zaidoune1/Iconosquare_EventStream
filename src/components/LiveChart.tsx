@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
+import IsRunningControl from "./IsRunningControl";
 
 const LiveChart = () => {
   const { data } = useLiveChartContext();
@@ -16,6 +17,7 @@ const LiveChart = () => {
   const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
   return (
     <div className="mb-8">
+      <IsRunningControl />
       <ResponsiveContainer height={250}>
         <AreaChart
           onClick={(e) => console.log(e.activeTooltipIndex)}

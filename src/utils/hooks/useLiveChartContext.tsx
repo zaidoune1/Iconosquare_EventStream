@@ -4,11 +4,11 @@ import React, {
   createContext,
   ReactNode,
   Dispatch,
-  Reducer,
 } from "react";
 import { createRandomEvent } from "../utils";
 import { Tevents } from "../types/TinitialState";
 import { TypeOfActions } from "../types/TinitialState";
+import { liveChartReducer } from "../liveChartReducer";
 
 type Tchildren = {
   children: ReactNode;
@@ -27,21 +27,7 @@ const initialEvents = Array.from(Array(50)).map((_, ix) =>
 
 const initialData: Tevents = {
   events: initialEvents,
-};
-
-const liveChartReducer: Reducer<Tevents, TypeOfActions> = (
-  state: Tevents,
-  action: TypeOfActions
-) => {
-  switch (action.type) {
-    case "new_event":
-      return {
-        events: [...state.events, action.payload],
-      };
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
-    }
-  }
+  isRunning: true,
 };
 
 const LiveChartProvider = ({ children }: Tchildren) => {

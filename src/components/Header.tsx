@@ -7,7 +7,7 @@ const Header = () => {
       <div className="mx-auto max-w-7xl px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 flex items-center space-x-4">
-            <Logo size="40" restProps={undefined} />{" "}
+            <Logo size="40" />
             <span>Iconosquare - React technical test</span>
           </h1>
           <div className="text-gray-600 text-lg leading-8">
