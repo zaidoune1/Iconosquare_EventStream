@@ -12,7 +12,7 @@
 
 ### Tasks
 
-You have to do some tasks on a graph and a table which are a simulation of a live stream of events that refreshes every 2s. 
+You have to do some tasks on a graph and a table which are a simulation of a live stream of events that refreshes every 2s.
 
 - Add a button to pause/play.
 - Clicking on a cell makes it editable and allows to edit its value.
@@ -26,6 +26,7 @@ You have to do some tasks on a graph and a table which are a simulation of a liv
 - Migrate the project in Typescript.
 
 ### Additional information
+
 - The `Container` file must not be edited. Consider that this is the only constraint.
 - Use the ui/ux you consider working well for the use case.
 - You may use any library you find useful for this use case.
