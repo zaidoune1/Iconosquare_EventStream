@@ -3,6 +3,7 @@ import {
   IS_NOT_RUNNING,
   IS_RUNNING,
   NEW_EVENT,
+  RESET,
   Tevents,
   TypeOfActions,
   UPDATE_EVENT_VALUE,
@@ -42,6 +43,27 @@ export const liveChartReducer: Reducer<Tevents, TypeOfActions> = (
       return {
         ...state,
         events: updatedEvents,
+      };
+
+    case RESET:
+      const nbTotalEvents = state?.events?.length;
+      const eventsFiltered = state.events.slice(
+        nbTotalEvents - 20,
+        nbTotalEvents
+      );
+
+      console.log(eventsFiltered);
+
+      const resetEvents = state.events.map((event) => ({
+        ...event,
+        value1: 0,
+        value2: 0,
+        comment: "",
+      }));
+
+      return {
+        events: resetEvents,
+        isRunning: true,
       };
 
     default: {

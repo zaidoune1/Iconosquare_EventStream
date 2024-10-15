@@ -32,6 +32,7 @@ const initialData: Tevents = {
 
 const LiveChartProvider = ({ children }: Tchildren) => {
   const [data, dispatch] = useReducer(liveChartReducer, initialData);
+
   return (
     <LiveChartContext.Provider
       value={{

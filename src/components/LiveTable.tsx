@@ -3,19 +3,17 @@ import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
 import {
   IS_NOT_RUNNING,
   IS_RUNNING,
+  TinitialState,
   UPDATE_EVENT_VALUE,
 } from "../utils/types/TinitialState";
 import EventsFiltered from "./EventsFiltered";
 import Button from "./Button";
 
-interface TinitialState {
-  index: number;
-  value1: number;
-  value2: number;
-  comment?: string;
-}
+type TLiveTableprops = {
+  getCells: TinitialState | undefined;
+};
 
-const LiveTable: React.FC = () => {
+const LiveTable = ({ getCells }: TLiveTableprops) => {
   const { data, dispatch } = useLiveChartContext();
   const nbTotalEvents = data?.events?.length;
   const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
@@ -27,7 +25,7 @@ const LiveTable: React.FC = () => {
   const handleEditClick = (
     index: number,
     currentValue: number,
-    field: "value1" | "value2"
+    field: "value1" | "value2" | null
   ) => {
     setEditIndex(index);
     setEditField(field);
@@ -45,11 +43,11 @@ const LiveTable: React.FC = () => {
       payload: {
         index,
         value1:
-          editField === "value1"
+          editField === "value1" && data.events[index].value1
             ? (data.events[index].value1 = Number(editValue))
             : data.events[index].value1,
         value2:
-          editField === "value2"
+          editField === "value2" && data.events[index].value2
             ? (data.events[index].value2 = Number(editValue))
             : data.events[index].value2,
       },
@@ -68,10 +66,17 @@ const LiveTable: React.FC = () => {
         <div className="p-2 border-t border-gray-300">Value 1</div>
         <div className="p-2 border-t border-gray-300">Value 2</div>
       </div>
-      {eventsFiltered.map((event: TinitialState) => (
+      {eventsFiltered.map((event: TinitialState, index: number) => (
         <div key={event.index} className="border-l border-gray-300 flex-1">
           <div className="p-2">{event.index}</div>
-          <div className="p-2 border-t border-gray-300">
+
+          <div
+            className={`p-2 ${
+              event.value1 === getCells?.value1
+                ? "border-2 border-blue-600"
+                : "border-t border-gray-300 bg-white"
+            }`}
+          >
             {editIndex === event.index && editField === "value1" ? (
               <EventsFiltered
                 event={event}
@@ -85,8 +90,9 @@ const LiveTable: React.FC = () => {
             ) : (
               <Button
                 handleEditClick={handleEditClick}
-                event={event}
-                field="value1"
+                eventIndex={event.index}
+                eventValue={event.value1}
+                value={"value1"}
               />
             )}
           </div>
@@ -105,8 +111,9 @@ const LiveTable: React.FC = () => {
             ) : (
               <Button
                 handleEditClick={handleEditClick}
-                event={event}
-                field="value2"
+                eventIndex={event.index}
+                eventValue={event.value2}
+                value={"value2"}
               />
             )}
           </div>

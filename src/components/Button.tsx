@@ -4,16 +4,22 @@ type TButtonprops = {
   handleEditClick: (
     index: number,
     currentValue: number,
-    field: "value1" | "value2"
+    field: "value1" | "value2" | null
   ) => void;
-  event: { index: number; value1: number; value2: number };
-  field: "value1" | "value2";
+  eventValue: number;
+  eventIndex: number;
+  value: "value1" | "value2" | null;
 };
 
-function Button({ handleEditClick, event, field }: TButtonprops) {
+function Button({
+  handleEditClick,
+  eventValue,
+  eventIndex,
+  value,
+}: TButtonprops) {
   return (
-    <span onClick={() => handleEditClick(event.index, event[field], field)}>
-      {event[field]}
+    <span onClick={() => handleEditClick(eventIndex, eventValue, value)}>
+      {eventValue}
     </span>
   );
 }
