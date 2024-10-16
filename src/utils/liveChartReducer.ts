@@ -3,6 +3,7 @@ import {
   IS_NOT_RUNNING,
   IS_RUNNING,
   NEW_EVENT,
+  OPEN_THE_CELL,
   RESET,
   Tevents,
   TypeOfActions,
@@ -14,29 +15,33 @@ export const liveChartReducer: Reducer<Tevents, TypeOfActions> = (
   action: TypeOfActions
 ) => {
   switch (action.type) {
-    case NEW_EVENT:
+    case NEW_EVENT: {
       if (!state.isRunning) return state;
       return {
         ...state,
         events: [...state.events, action.payload],
+        previousData: [...state.previousData, action.payload],
       };
+    }
 
-    case IS_RUNNING:
+    case IS_RUNNING: {
       return {
         ...state,
         isRunning: !state.isRunning,
       };
+    }
 
-    case IS_NOT_RUNNING:
+    case IS_NOT_RUNNING: {
       return {
         ...state,
         isRunning: false,
       };
+    }
 
-    case UPDATE_EVENT_VALUE:
+    case UPDATE_EVENT_VALUE: {
       const { index, value1, value2 } = action.payload;
 
-      const updatedEvents = state.events.map((event) =>
+      const updatedEvents = state.events?.map((event) =>
         event.index === index ? { ...event, value1, value2 } : event
       );
 
@@ -44,27 +49,29 @@ export const liveChartReducer: Reducer<Tevents, TypeOfActions> = (
         ...state,
         events: updatedEvents,
       };
+    }
 
     case RESET:
-      const nbTotalEvents = state?.events?.length;
-      const eventsFiltered = state.events.slice(
-        nbTotalEvents - 20,
-        nbTotalEvents
-      );
-
-      console.log(eventsFiltered);
-
-      const resetEvents = state.events.map((event) => ({
-        ...event,
-        value1: 0,
-        value2: 0,
-        comment: "",
-      }));
-
       return {
-        events: resetEvents,
+        ...state,
+        events: state.previousData,
         isRunning: true,
       };
+
+    case OPEN_THE_CELL: {
+      const { index, value1 } = action.payload;
+      const newObj = state.previousData.map((el) => {
+        if (el.index === index && el.value1 !== value1) {
+          return { ...el, value1: el.value1 };
+        } else {
+          return el;
+        }
+      });
+      return {
+        ...state,
+        previousData: newObj,
+      };
+    }
 
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

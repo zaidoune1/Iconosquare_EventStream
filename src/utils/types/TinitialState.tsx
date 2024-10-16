@@ -15,6 +15,7 @@ export type TinitialState = {
 export type Tevents = {
   events: TinitialState[];
   isRunning: boolean;
+  previousData: TinitialState[];
 };
 
 export type Tpayload = {

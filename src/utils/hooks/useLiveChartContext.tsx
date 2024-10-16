@@ -6,8 +6,7 @@ import React, {
   Dispatch,
 } from "react";
 import { createRandomEvent } from "../utils";
-import { Tevents } from "../types/TinitialState";
-import { TypeOfActions } from "../types/TinitialState";
+import { Tevents, TypeOfActions } from "../types/TinitialState";
 import { liveChartReducer } from "../liveChartReducer";
 
 type Tchildren = {
@@ -21,13 +20,13 @@ type Tcontext = {
 
 const LiveChartContext = createContext<Tcontext | undefined>(undefined);
 
-const initialEvents = Array.from(Array(50)).map((_, ix) =>
+export const initialEvents = Array.from(Array(50)).map((_, ix) =>
   createRandomEvent(ix)
 );
-
 const initialData: Tevents = {
   events: initialEvents,
   isRunning: true,
+  previousData: [...initialEvents],
 };
 
 const LiveChartProvider = ({ children }: Tchildren) => {

@@ -21,7 +21,6 @@ type Tchart = {
 
 function Charts({ eventsFiltered, cellObjects }: Tchart) {
   const { dispatch } = useLiveChartContext();
-  console.log(eventsFiltered);
 
   return (
     <>

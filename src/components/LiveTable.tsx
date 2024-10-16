@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
 import {
   IS_NOT_RUNNING,
   IS_RUNNING,
+  OPEN_THE_CELL,
   TinitialState,
   UPDATE_EVENT_VALUE,
 } from "../utils/types/TinitialState";
@@ -58,6 +59,13 @@ const LiveTable = ({ getCells }: TLiveTableprops) => {
     setEditField(null);
     setEditValue("");
   };
+
+  useEffect(() => {
+    dispatch({
+      type: OPEN_THE_CELL,
+      payload: { index: editIndex as number, value1: editValue as number },
+    });
+  }, [dispatch, editIndex, editValue]);
 
   return (
     <div className="flex border border-gray-300 rounded">
