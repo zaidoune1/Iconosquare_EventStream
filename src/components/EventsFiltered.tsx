@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { TinitialState } from "../utils/types/TinitialState";
 
 type TEventsFilteredProps = {
@@ -21,9 +21,15 @@ function EventsFiltered({
   handleChange,
   handleSave,
 }: TEventsFilteredProps) {
+  const ref = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, [ref]);
   return (
     <>
       <input
+        ref={ref}
         type="text"
         value={editValue}
         onChange={handleChange}
@@ -31,7 +37,7 @@ function EventsFiltered({
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSave(event.index);
         }}
-        className="border p-2 w-full"
+        className="p-2 w-full focus:outline-none"
       />
     </>
   );

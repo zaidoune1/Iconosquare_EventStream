@@ -17,6 +17,7 @@ export const liveChartReducer: Reducer<Tevents, TypeOfActions> = (
   switch (action.type) {
     case NEW_EVENT: {
       if (!state.isRunning) return state;
+
       return {
         ...state,
         events: [...state.events, action.payload],

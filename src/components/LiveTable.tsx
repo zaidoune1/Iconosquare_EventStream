@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, useEffect, SetStateAction } from "react";
 import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
 import {
   IS_NOT_RUNNING,
@@ -11,13 +11,13 @@ import EventsFiltered from "./EventsFiltered";
 import Button from "./Button";
 
 type TLiveTableprops = {
-  getCells: TinitialState | undefined;
+  getCells: number | null;
+  setCells: React.Dispatch<SetStateAction<number | null>>;
+  eventsFiltered: TinitialState[];
 };
 
-const LiveTable = ({ getCells }: TLiveTableprops) => {
+const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
   const { data, dispatch } = useLiveChartContext();
-  const nbTotalEvents = data?.events?.length;
-  const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
 
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const [editField, setEditField] = useState<"value1" | "value2" | null>(null);
@@ -53,11 +53,11 @@ const LiveTable = ({ getCells }: TLiveTableprops) => {
             : data.events[index].value2,
       },
     });
-
     dispatch({ type: IS_RUNNING });
     setEditIndex(null);
-    setEditField(null);
     setEditValue("");
+    setEditField(null);
+    setCells(null);
   };
 
   useEffect(() => {
@@ -68,19 +68,18 @@ const LiveTable = ({ getCells }: TLiveTableprops) => {
   }, [dispatch, editIndex, editValue]);
 
   return (
-    <div className="flex border border-gray-300 rounded">
+    <div className="flex border border-gray-300 rounded ">
       <div>
         <div className="p-2">Index</div>
         <div className="p-2 border-t border-gray-300">Value 1</div>
         <div className="p-2 border-t border-gray-300">Value 2</div>
       </div>
-      {eventsFiltered.map((event: TinitialState, index: number) => (
+      {eventsFiltered.map((event: TinitialState) => (
         <div key={event.index} className="border-l border-gray-300 flex-1">
           <div className="p-2">{event.index}</div>
-
           <div
             className={`p-2 ${
-              event.value1 === getCells?.value1
+              event.value1 === getCells
                 ? "border-2 border-blue-600"
                 : "border-t border-gray-300 bg-white"
             }`}

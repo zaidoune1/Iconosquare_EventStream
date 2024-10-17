@@ -7,24 +7,30 @@ import Charts from "./Charts";
 
 const LiveChart = () => {
   const { data } = useLiveChartContext();
-  const nbTotalEvents = data?.events?.length;
-  const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
 
-  const [getCells, setCells] = useState<TinitialState>();
+  const [getCells, setCells] = useState<number | null>(null);
+
+  const nbTotalEvents = data?.events?.length;
+  const start = Math.max(0, nbTotalEvents - 20);
+  const eventsFiltered = data.events.slice(start, nbTotalEvents);
 
   const cellObjects = (e: CategoricalChartState): void => {
     const cellValue = eventsFiltered.find(
       (_: TinitialState, index: number) => index === e.activeTooltipIndex
     );
 
-    setCells(cellValue);
+    setCells(cellValue?.value1 as number);
   };
 
   return (
-    <>
+    <div>
       <Charts eventsFiltered={eventsFiltered} cellObjects={cellObjects} />
-      <LiveTable getCells={getCells} />
-    </>
+      <LiveTable
+        getCells={getCells}
+        setCells={setCells}
+        eventsFiltered={eventsFiltered}
+      />
+    </div>
   );
 };
 

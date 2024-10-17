@@ -10,9 +10,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import IsRunningControl from "./IsRunningControl";
-import { RESET, TinitialState } from "../utils/types/TinitialState";
+import { TinitialState } from "../utils/types/TinitialState";
 import { CategoricalChartState } from "recharts/types/chart/types";
-import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
+import ResteButton from "./ResteButton";
 
 type Tchart = {
   eventsFiltered: TinitialState[];
@@ -20,22 +20,12 @@ type Tchart = {
 };
 
 function Charts({ eventsFiltered, cellObjects }: Tchart) {
-  const { dispatch } = useLiveChartContext();
-
   return (
     <>
       <div className="mb-8">
         <IsRunningControl />
-        <button
-          className="bg-blue-500 text-white p-1 w-28 text-base tracking-[2px] font-bold rounded-[4px] m-3 hover:shadow-custom transition"
-          onClick={() => {
-            dispatch({
-              type: RESET,
-            });
-          }}
-        >
-          Reset
-        </button>
+        <ResteButton />
+
         <ResponsiveContainer height={250}>
           <AreaChart
             onClick={(e) => cellObjects(e)}
