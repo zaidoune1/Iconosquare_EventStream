@@ -20,9 +20,9 @@ type Tcontext = {
 
 const LiveChartContext = createContext<Tcontext | undefined>(undefined);
 
-export const initialEvents = Array.from(Array(50)).map((_, ix) =>
-  createRandomEvent(ix)
-);
+const initialEvents = Array.from(Array(50)).map((_, ix) => {
+  return createRandomEvent(ix);
+});
 const initialData: Tevents = {
   events: initialEvents,
   isRunning: true,

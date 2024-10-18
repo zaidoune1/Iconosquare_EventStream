@@ -4,7 +4,7 @@ import { TinitialState } from "../utils/types/TinitialState";
 type TEventsFilteredProps = {
   event: TinitialState;
   editField: "value1" | "value2" | null;
-  editIndex: number | null;
+  editIndex: number;
   editValue: string | number;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSave: (index: number) => void;

@@ -47,6 +47,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
           editField === "value1" && data.events[index].value1
             ? (data.events[index].value1 = Number(editValue))
             : data.events[index].value1,
+
         value2:
           editField === "value2" && data.events[index].value2
             ? (data.events[index].value2 = Number(editValue))
@@ -61,11 +62,14 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
   };
 
   useEffect(() => {
-    dispatch({
-      type: OPEN_THE_CELL,
-      payload: { index: editIndex as number, value1: editValue as number },
-    });
-  }, [dispatch, editIndex, editValue]);
+    if (editIndex !== null) {
+      dispatch({
+        type: OPEN_THE_CELL,
+        payload: { index: editIndex, value1: editValue as number },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editIndex, editValue]);
 
   return (
     <div className="flex border border-gray-300 rounded ">

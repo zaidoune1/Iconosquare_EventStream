@@ -37,4 +37,8 @@ export type TypeOfActions =
     }
   | {
       type: typeof RESET;
+    }
+  | {
+      type: typeof NEW_EVENT;
+      payload: TinitialState;
     };
