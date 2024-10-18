@@ -34,6 +34,14 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
     dispatch({ type: IS_NOT_RUNNING });
   };
 
+  // const dqsd = () => {
+  //   setEditIndex(index);
+  //   setEditField(field);
+  //   setEditValue(currentValue);
+  //   dispatch({ type: IS_NOT_RUNNING });
+
+  // }
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEditValue(e.target.value);
   };
@@ -58,6 +66,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
     setEditIndex(null);
     setEditValue("");
     setEditField(null);
+
     setCells(null);
   };
 
@@ -84,7 +93,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
           <div
             className={`p-2 ${
               event.value1 === getCells
-                ? "border-2 border-blue-600"
+                ? "border-4 border-blue-600"
                 : "border-t border-gray-300 bg-white"
             }`}
           >
@@ -104,6 +113,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
                 eventIndex={event.index}
                 eventValue={event.value1}
                 value={"value1"}
+                getCells={getCells}
               />
             )}
           </div>
@@ -125,6 +135,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
                 eventIndex={event.index}
                 eventValue={event.value2}
                 value={"value2"}
+                getCells={getCells}
               />
             )}
           </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 type TButtonprops = {
   handleEditClick: (
@@ -9,6 +9,7 @@ type TButtonprops = {
   eventValue: number;
   eventIndex: number;
   value: "value1" | "value2" | null;
+  getCells: number | null;
 };
 
 function Button({
@@ -16,7 +17,13 @@ function Button({
   eventValue,
   eventIndex,
   value,
+  getCells,
 }: TButtonprops) {
+  useEffect(() => {
+    if (getCells === eventValue) {
+      handleEditClick(eventIndex, eventValue, value);
+    }
+  }, [eventIndex, eventValue, getCells, handleEditClick, value]);
   return (
     <span onClick={() => handleEditClick(eventIndex, eventValue, value)}>
       {eventValue}
