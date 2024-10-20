@@ -3,8 +3,9 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        custom: "1px 1px 6px black",
+        custom: " 1px 1px 6px black",
       },
+      
     },
   },
   plugins: [],

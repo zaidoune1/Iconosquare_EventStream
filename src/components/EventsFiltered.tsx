@@ -8,11 +8,6 @@ type TEventsFilteredProps = {
   editValue: string | number;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSave: (index: number) => void;
-  handleEditClick: (
-    index: number,
-    currentValue: number,
-    field: "value1" | "value2" | null
-  ) => void;
 };
 
 function EventsFiltered({

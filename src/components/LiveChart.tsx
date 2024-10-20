@@ -5,6 +5,7 @@ import { TinitialState } from "../utils/types/TinitialState";
 import { CategoricalChartState } from "recharts/types/chart/types";
 import Charts from "./Charts";
 import NavigationButtons from "./NavigationButtons";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const LiveChart = () => {
   const { data } = useLiveChartContext();
@@ -45,11 +46,23 @@ const LiveChart = () => {
 
   return (
     <div>
-      <div>
-        <NavigationButtons btnName={"For_Word"} navigationBtn={forWord} />
-        <NavigationButtons btnName={"Back_Word"} navigationBtn={backWord} />
+      <Charts
+        eventsFiltered={eventsFiltered}
+        cellObjects={cellObjects}
+        getCells={getCells}
+      />
+      <div className="flex justify-between item-center ">
+        <NavigationButtons
+          btnName={<FaArrowAltCircleLeft />}
+          navigationBtn={backWord}
+          className={"text-3xl font-black text-blue-700"}
+        />
+        <NavigationButtons
+          btnName={<FaArrowAltCircleRight />}
+          navigationBtn={forWord}
+          className={"text-3xl font-black text-blue-700"}
+        />
       </div>
-      <Charts eventsFiltered={eventsFiltered} cellObjects={cellObjects} />
       <LiveTable
         getCells={getCells}
         setCells={setCells}

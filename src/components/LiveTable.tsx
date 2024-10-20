@@ -75,17 +75,25 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
   return (
     <div className="flex border border-gray-300 rounded ">
       <div>
-        <div className="p-2">Index</div>
-        <div className="p-2 border-t border-gray-300">Value 1</div>
-        <div className="p-2 border-t border-gray-300">Value 2</div>
+        <div className="p-2 bg-gradient-to-r from-[#0088ff53] to-green-200 font-black">
+          Index
+        </div>
+        <div className="p-2 border-t border-gray-300 bg-[#0088ff18] font-black">
+          Value 1
+        </div>
+        <div className="p-2 border-t border-gray-300 bg-green-100 font-black">
+          Value 2
+        </div>
       </div>
       {eventsFiltered.map((event: TinitialState) => (
-        <div key={event.index} className="border-l border-gray-300 flex-1">
-          <div className="p-2">{event.index}</div>
+        <div key={event.index} className="border-l border-gray-300 flex-1  ">
+          <div className="p-2 bg-gradient-to-r from-[#0088ff11] to-green-50">
+            {event.index}
+          </div>
           <div
-            className={`p-2 ${
+            className={`p-2 text-[#0088ff] font-black  ${
               event.value1 === getCells
-                ? "border-4 border-blue-600"
+                ? "border-2 border-blue-600"
                 : "border-t border-gray-300"
             }`}
           >
@@ -97,7 +105,6 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
                 editValue={editValue}
                 handleChange={handleChange}
                 handleSave={handleSave}
-                handleEditClick={handleEditClick}
               />
             ) : (
               <Button
@@ -110,7 +117,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
             )}
           </div>
 
-          <div className="p-2 border-t border-gray-300">
+          <div className="p-2 border-t border-gray-300 text-green-700 font-black">
             {editIndex === event.index && editField === "value2" ? (
               <EventsFiltered
                 event={event}
@@ -119,7 +126,6 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
                 editValue={editValue}
                 handleChange={handleChange}
                 handleSave={handleSave}
-                handleEditClick={handleEditClick}
               />
             ) : (
               <Button

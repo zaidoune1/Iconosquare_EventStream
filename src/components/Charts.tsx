@@ -12,22 +12,22 @@ import {
 import IsRunningControl from "./IsRunningControl";
 import { TinitialState } from "../utils/types/TinitialState";
 import { CategoricalChartState } from "recharts/types/chart/types";
-import ResteButton from "./ResteButton";
 
 type Tchart = {
   eventsFiltered: TinitialState[];
   cellObjects: (e: CategoricalChartState) => void;
+  getCells: number | null;
 };
 
-function Charts({ eventsFiltered, cellObjects }: Tchart) {
+function Charts({ eventsFiltered, cellObjects, getCells }: Tchart) {
   return (
     <>
-      <div className="mb-8">
-        <IsRunningControl />
-        <ResteButton />
+      <div>
+        <IsRunningControl getCells={getCells} />
 
         <ResponsiveContainer height={250}>
           <AreaChart
+            style={{ cursor: "pointer" }}
             onClick={(e) => cellObjects(e)}
             data={eventsFiltered}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}

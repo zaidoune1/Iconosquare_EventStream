@@ -1,16 +1,27 @@
 import React from "react";
 
 type TNavigationButtons = {
-  btnName: string;
+  btnName: string | JSX.Element;
   navigationBtn: () => void;
+  className?: string;
+  iconeDescription?: string;
 };
 
-function NavigationButtons({ btnName, navigationBtn }: TNavigationButtons) {
+function NavigationButtons({
+  className,
+  btnName,
+  navigationBtn,
+  iconeDescription,
+}: TNavigationButtons) {
   return (
-    <div>
-      <button className="btn" onClick={navigationBtn}>
+    <div className="flex items-center my-3">
+      <button
+        className={!className ? "btn" : className}
+        onClick={navigationBtn}
+      >
         {btnName}
       </button>
+      <span className="text-sm  font-black"> {iconeDescription} </span>
     </div>
   );
 }
