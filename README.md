@@ -42,7 +42,7 @@ Iconosquare Event Stream is a React application that simulates a live data strea
 1. Clone the repository:
 
    ```bash
-   git clone <repository-link>
+   git clone https://github.com/zaidoune1/Iconosquare_EventStream.git
    ```
 
 2. Navigate to the project folder:
