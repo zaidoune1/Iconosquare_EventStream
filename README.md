@@ -1,5 +1,9 @@
 # Iconosquare Event Stream
 
+<p align="center">
+  <img align="center" src="https://www.leslivresblancs.fr/sites/default/files/iconosquare-logo.png" style="width: 400px">
+</p>
+
 ## Description
 
 Iconosquare Event Stream is a React application that simulates a live data stream, refreshing every 2 seconds. The application displays real-time events in both a table and a chart, allowing users to interact with the data through an intuitive interface.
