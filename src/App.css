@@ -1,0 +1,3 @@
+.btn {
+  @apply bg-blue-500 text-white p-1 w-28 text-base tracking-[2px] font-bold rounded-[4px] m-3 hover:shadow-custom transition;
+}

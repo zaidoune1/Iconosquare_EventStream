@@ -34,14 +34,6 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
     dispatch({ type: IS_NOT_RUNNING });
   };
 
-  // const dqsd = () => {
-  //   setEditIndex(index);
-  //   setEditField(field);
-  //   setEditValue(currentValue);
-  //   dispatch({ type: IS_NOT_RUNNING });
-
-  // }
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEditValue(e.target.value);
   };
@@ -52,7 +44,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
       payload: {
         index,
         value1:
-          editField === "value1" && data.events[index].value1
+          editField === "value1" && data.events[index].value1 && editValue
             ? (data.events[index].value1 = Number(editValue))
             : data.events[index].value1,
 
@@ -94,7 +86,7 @@ const LiveTable = ({ getCells, setCells, eventsFiltered }: TLiveTableprops) => {
             className={`p-2 ${
               event.value1 === getCells
                 ? "border-4 border-blue-600"
-                : "border-t border-gray-300 bg-white"
+                : "border-t border-gray-300"
             }`}
           >
             {editIndex === event.index && editField === "value1" ? (

@@ -1,21 +1,19 @@
 import React from "react";
 import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
 import { RESET } from "../utils/types/TinitialState";
+import NavigationButtons from "./NavigationButtons";
 
 function ResteButton() {
   const { dispatch } = useLiveChartContext();
+
+  const resetHandler = () =>
+    dispatch({
+      type: RESET,
+    });
+
   return (
     <div>
-      <button
-        className="bg-blue-500 text-white p-1 w-28 text-base tracking-[2px] font-bold rounded-[4px] m-3 hover:shadow-custom transition"
-        onClick={() => {
-          dispatch({
-            type: RESET,
-          });
-        }}
-      >
-        Reset
-      </button>
+      <NavigationButtons btnName={"Reset"} navigationBtn={resetHandler} />
     </div>
   );
 }
