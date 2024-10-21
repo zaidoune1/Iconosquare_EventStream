@@ -46,11 +46,7 @@ const LiveChart = () => {
 
   return (
     <div>
-      <Charts
-        eventsFiltered={eventsFiltered}
-        cellObjects={cellObjects}
-        getCells={getCells}
-      />
+      <Charts eventsFiltered={eventsFiltered} cellObjects={cellObjects} />
       <div className="flex justify-between item-center ">
         <NavigationButtons
           btnName={<FaArrowAltCircleLeft />}

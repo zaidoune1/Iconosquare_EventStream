@@ -8,11 +8,7 @@ import Logo from "./Logo";
 import ResteButton from "./ResteButton";
 import StatisticCard from "./StatisticCard";
 
-export type TgetCellsProps = {
-  getCells: number | null;
-};
-
-function IsRunningControl({ getCells }: TgetCellsProps) {
+function IsRunningControl() {
   const [maxValue, setMaxValue] = useState<{
     maxValue1: number;
     maxValue2: number;
@@ -59,20 +55,22 @@ function IsRunningControl({ getCells }: TgetCellsProps) {
             className={"text-3xl font-black text-[#0089ff] px-4"}
             iconeDescription={data.isRunning ? "Stop" : "Play"}
           />
-          <ResteButton getCells={getCells} />
+          <ResteButton />
         </div>
       </div>
 
       <div className=" border rounded-md w-48 h-48 flex justify-center items-center flex-col shadow-custom">
         <StatisticCard
           value1={minValue.minValue1}
-          title={"Min"}
+          titlevalue1={"Min value1"}
+          titlevalue2={"Min value2"}
           value2={minValue.minValue2}
         />
       </div>
       <div className=" border rounded-md w-48 h-48 flex justify-center items-center flex-col shadow-custom">
         <StatisticCard
-          title={"Max"}
+          titlevalue1={"Max value2"}
+          titlevalue2={"Max value2"}
           value1={maxValue.maxValue1}
           value2={maxValue.maxValue2}
         />

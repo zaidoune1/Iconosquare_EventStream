@@ -4,10 +4,11 @@ import { FaChartSimple } from "react-icons/fa6";
 type Tdata = {
   value1: ReactNode;
   value2: ReactNode;
-  title: string;
+  titlevalue1: string;
+  titlevalue2: string;
 };
 
-function StatisticCard({ value1, value2, title }: Tdata) {
+function StatisticCard({ value1, value2, titlevalue1, titlevalue2 }: Tdata) {
   return (
     <>
       <div
@@ -17,11 +18,11 @@ function StatisticCard({ value1, value2, title }: Tdata) {
         <FaChartSimple />
       </div>
       <div className="flex my-3">
-        <span className=" text-lg font-medium "> {title} : </span>
+        <span className=" text-lg font-medium "> {titlevalue1} : </span>
         <h3 className="ml-3 text-xl font-medium"> {value1} </h3>
       </div>
       <div className="flex">
-        <span className="text-lg font-medium"> {title} : </span>
+        <span className="text-lg font-medium"> {titlevalue2} : </span>
         <h3 className="ml-3 text-xl font-medium"> {value2} </h3>
       </div>
     </>

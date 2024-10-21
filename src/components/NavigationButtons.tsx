@@ -14,7 +14,7 @@ function NavigationButtons({
   iconeDescription,
 }: TNavigationButtons) {
   return (
-    <div className="flex items-center my-3">
+    <div className="flex items-center my-3 ">
       <button
         className={!className ? "btn" : className}
         onClick={navigationBtn}

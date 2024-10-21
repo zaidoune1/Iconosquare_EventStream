@@ -16,14 +16,13 @@ import { CategoricalChartState } from "recharts/types/chart/types";
 type Tchart = {
   eventsFiltered: TinitialState[];
   cellObjects: (e: CategoricalChartState) => void;
-  getCells: number | null;
 };
 
-function Charts({ eventsFiltered, cellObjects, getCells }: Tchart) {
+function Charts({ eventsFiltered, cellObjects }: Tchart) {
   return (
     <>
       <div>
-        <IsRunningControl getCells={getCells} />
+        <IsRunningControl />
 
         <ResponsiveContainer height={250}>
           <AreaChart

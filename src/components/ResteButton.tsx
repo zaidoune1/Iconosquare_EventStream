@@ -3,12 +3,9 @@ import { useLiveChartContext } from "../utils/hooks/useLiveChartContext";
 import { RESET } from "../utils/types/TinitialState";
 import NavigationButtons from "./NavigationButtons";
 import { GiCancel } from "react-icons/gi";
-import { TgetCellsProps } from "./IsRunningControl";
 
-function ResteButton({ getCells }: TgetCellsProps) {
+function ResteButton() {
   const { dispatch } = useLiveChartContext();
-
-  // getCells
 
   const resetHandler = () =>
     dispatch({
